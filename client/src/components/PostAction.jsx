@@ -1,7 +1,8 @@
-import React from "react";
-
-const PostAction = () => {
-  return <div>PostAction</div>;
-};
-
-export default PostAction;
+export default function PostAction({ icon, text, onClick }) {
+  return (
+    <button className="flex items-center" onClick={onClick}>
+      <span className="mr-1">{icon}</span>
+      <span className="hidden sm:inline">{text}</span>
+    </button>
+  );
+}

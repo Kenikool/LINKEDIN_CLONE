@@ -1,27 +1,28 @@
-//import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-//import { axiosInstance } from "../../lib/axios";
-//import toast from "react-hot-toast";
-//import { Loader } from "lucide-react";
+import axiosInstance from "../../lib/axios";
+import toast from "react-hot-toast";
+import { Loader } from "lucide-react";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  //const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
-  //   const { mutate: loginMutation, isLoading } = useMutation({
-  //     mutationFn: (userData) => axiosInstance.post("/auth/login", userData),
-  //     onSuccess: () => {
-  //       queryClient.invalidateQueries({ queryKey: ["authUser"] });
-  //     },
-  //     onError: (err) => {
-  //       toast.error(err.response.data.message || "Something went wrong");
-  //     },
-  //   });
+  const { mutate: loginMutation, isLoading } = useMutation({
+    mutationFn: (userData) => axiosInstance.post("/auth/login", userData),
+    onSuccess: () => {
+      toast.success("Logged in successfully");
+      queryClient.invalidateQueries({ queryKey: ["authUser"] });
+    },
+    onError: (err) => {
+      toast.error(err.response.data.message || "Something went wrong");
+    },
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //loginMutation({ username, password });
+    loginMutation({ username, password });
   };
 
   return (
@@ -44,7 +45,7 @@ const LoginForm = () => {
       />
 
       <button type="submit" className="btn btn-primary w-full">
-        Login
+        {isLoading ? <Loader className="size-5 animate-spin" /> : "Login"}
       </button>
     </form>
   );
