@@ -8,6 +8,7 @@ import ProfilePage from "./pages/ProfilePage";
 import NetworkPage from "./pages/NetworkPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import PostPage from "./pages/PostPage";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/notifications" element={<NotificationsPage />} />
         <Route path="/post/:postId" element={<PostPage />} />
       </Routes>
+      <Toaster />
     </Layout>
   );
 };

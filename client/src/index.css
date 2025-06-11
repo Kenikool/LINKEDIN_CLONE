@@ -1,2 +1,18 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "linkedin";
+  default: true;
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-primary: #0a66c2; /* LinkedIn Blue */
+  --color-secondary: #ffffff; /* White */
+  --color-accent: #7fc15e; /* LinkedIn Green (for accents) */
+  --color-neutral: #000000; /* Black (for text) */
+  --color-base-100: #badbfc; /* Light Gray (background) */
+  --color-info: #5e5e5e; /* Dark Gray (for secondary text) */
+  --color-success: #057642; /* Dark Green (for success messages) */
+  --color-warning: #f5c75d; /* Yellow (for warnings) */
+  --color-error: #cc1016; /* Red (for errors) */
+}
